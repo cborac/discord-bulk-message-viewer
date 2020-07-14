@@ -57,6 +57,9 @@ function load(data){
 const query = new URLSearchParams(location.search)
 
 const data = query.get('data')
+const channel = query.get('channel')
+const attachment = query.get('attachment')
+const name = query.get('name')
 
 /**
  * 
@@ -64,17 +67,26 @@ const data = query.get('data')
  */
 async function fileUpload(input){
    location.search = '?data=' + encodeURIComponent(await input.files[0].text())
-}
+};
 
-if (data === null) {
-     const input = document.createElement('input')
-     input.type = 'file'
-     input.accept = '.json'
-     input.setAttribute('onchange', 'fileUpload(this)')
-     document.body.append(input)
-}
-else if (data.startsWith('http')) {
-     throw new ReferenceError('Mehod not implemented.')
-}else {
-     load(JSON.parse(data))
-}
+(async function() {
+     if (channel) {
+          document.getElementById('loader').style.visibility = 'visible'
+          const res = await fetch(`https://cors-anywhere.herokuapp.com/https://cdn.discordapp.com/attachments/${channel}/${attachment}/${name}`)
+          const body = await res.text()
+          load(JSON.parse(body))
+          document.getElementById('loader').style.visibility = 'hidden'
+     }
+     else if (data === null) {
+          const input = document.createElement('input')
+          input.type = 'file'
+          input.accept = '.json'
+          input.setAttribute('onchange', 'fileUpload(this)')
+          document.body.append(input)
+     }
+     else if (data.startsWith('http')) {
+          throw new ReferenceError('Mehod not implemented.')
+     }else {
+          load(JSON.parse(data))
+     }
+})()

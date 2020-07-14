@@ -1,8 +1,18 @@
-html body {
+html, body {
      margin: 0 auto;
      font-family: Arial, Helvetica, sans-serif;
      color: #fff;
      background: #36393f;
+}
+
+html {
+     width: 100%;
+     height: 100%;
+}
+
+body {
+     width: 100%;
+     height: 100%;
 }
 
 .timestamp {
@@ -45,3 +55,14 @@ html body {
 .messageContent {
      font-size: 1.25rem;
 }
+
+.cube {
+     position: absolute;
+
+     width: 10px;
+     height: 10px;
+     background: #7289da;
+     animation: spinner-wandering-cubes 1.8s ease-in-out infinite
+}
+
+@keyframes spinner-wandering-cubes{25%{-webkit-transform:translateX(22px) rotate(-90deg) scale(.5);transform:translateX(22px) rotate(-90deg) scale(.5)}50%{-webkit-transform:translateX(22px) translateY(22px) rotate(-180deg);transform:translateX(22px) translateY(22px) rotate(-180deg)}75%{-webkit-transform:translateX(0) translateY(22px) rotate(-270deg) scale(.5);transform:translateX(0) translateY(22px) rotate(-270deg) scale(.5)}to{-webkit-transform:rotate(-1turn);transform:rotate(-1turn)}}@-webkit-keyframes spinner-chasing-dots-rotate-1WX_VU{to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}

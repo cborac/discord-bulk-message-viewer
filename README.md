@@ -2,7 +2,7 @@
 Just supply a JSON file within the url or supply it directly on the website.
 
 ```
-https://discord-bulk-message-viewer.sardonyx.me?data=ENCODEDURICOMPONENTHERE
+https://sardonyx.me/discord-bulk-message-viewer?data=ENCODEDURICOMPONENTHERE
 ```
 
 #### Example JSON Structure

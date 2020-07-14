@@ -36,7 +36,7 @@ https://sardonyx.me/discord-bulk-message-viewer?channel=Channel_ID&attachment=At
 
 #### Discord.js example with collection of messages
 ```javascript
-const arrayofmessages = collectionofmessages.map(m => ({ author_id: m.author.id,avatar_hash: m.author.avatar, hexcolor: m.member.displayHexColor, timestamp: m.createdTimestamp, author_nickame: m.member.nickname || m.author.username, content: m.content }))
+const arrayofmessages = collectionofmessages.map(m => ({ author_id: m.author.id,avatar_hash: m.author.avatar, hexcolor: m.member.displayHexColor.substr(1), timestamp: m.createdTimestamp, author_nickname: m.member.nickname || m.author.username, content: m.content }))
 
 channel.send('Bulk messages:', new MessageAttachment(Buffer.from(JSON.stringify(arrayofmessages)), 'bulkmsg.json')).then(msg => {
      msg.channel.send(`Preview: https://sardonyx.me/discord-bulk-message-viewer?channel=${msg.channel.id}&attachment=${msg.attachments.first().id}&name=${encodeURIComponent(msg.attachments.first().name)}`)

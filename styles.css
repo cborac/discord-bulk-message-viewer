@@ -1,0 +1,47 @@
+html body {
+     margin: 0 auto;
+     font-family: Arial, Helvetica, sans-serif;
+     color: #fff;
+     background: #36393f;
+}
+
+.timestamp {
+     color: #72767d;
+     position: relative;
+     margin-left: 10px;
+     font-size: 0.75rem;
+     text-align: center;
+     bottom: 5px;
+}
+
+.nick {
+     position: relative;
+     font-size: 1rem;
+     bottom: 5px;
+}
+
+.avatar {
+     position: relative;
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     bottom: 10px;
+}
+
+.message {
+     margin-top: 2rem;
+     margin-left: 2rem;
+     display: flex;
+     width: calc(100% - 2rem);
+     display: flex;
+     flex-direction: row;
+}
+
+.right {
+     margin-left: 18px;
+     place-items: center;
+}
+
+.messageContent {
+     font-size: 1.25rem;
+}

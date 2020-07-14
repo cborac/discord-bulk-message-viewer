@@ -31,5 +31,5 @@ https://sardonyx.me/discord-bulk-message-viewer?data=ENCODEDURICOMPONENTHERE
 ```javascript
 const arrayofmessages = collectionofmessages.map(m => ({ author_id: m.author.id,avatar_hash: m.author.avatar, hexcolor: m.member.displayHexColor, timestamp: m.createdTimestamp, author_nickame: m.member.nickname || m.author.username, content: m.content }))
 
-console.log('Results are here: https://discord-bulk-message-viewer.sardonyx.me?data=' + encodeURIComponent(JSON.stringify(arrayofmessages)))
+console.log('Results are here: https://sardonyx.me/discord-bulk-message-viewer?data=' + encodeURIComponent(JSON.stringify(arrayofmessages)))
 ```

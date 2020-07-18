@@ -1,7 +1,7 @@
 [
      {
           "author_id": "295222772546928641",
-          "avatar_hash": "2ba235580297f757f3cd4bf188a94385",
+          "avatar_hash": "8ee0ea2d134902ada50482dac1849ea0",
           "hexcolor": "B99CBA",
           "timestamp": 1594744316220,
           "author_nickname": "Sardonyx",
@@ -9,7 +9,7 @@
      },
      {
           "author_id": "295222772546928641",
-          "avatar_hash": "2ba235580297f757f3cd4bf188a94385",
+          "avatar_hash": "8ee0ea2d134902ada50482dac1849ea0",
           "hexcolor": "B99CBA",
           "timestamp": 1594744316220,
           "author_nickname": "Sardonyx",
@@ -17,10 +17,16 @@
      },
      {
           "author_id": "130973321683533824",
-          "avatar_hash": "a_930134c64191da4713c22eb120c939e7",
+          "avatar_hash": "8ee0ea2d134902ada50482dac1849ea0",
           "hexcolor": "F47FFF",
           "timestamp": 1594744316220,
           "author_nickname": "Moomin Lachee #AdaptiveCards",
           "content": "Yeah that's fine 😀 where's <@!515615356052570132>"
+     },
+     {
+          "author_id": "none lol",
+          "avatar_hash": "invalid hash or smthg",
+          "hexcolor": 0,
+          "content": "All of my values are invalid lol, this is how the site will react on invalid values."
      }
 ]

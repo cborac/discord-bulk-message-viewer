@@ -18,8 +18,15 @@ const usercache = []
 function createElementFromHTML(htmlString) {
      const div = document.createElement('div');
      div.innerHTML = htmlString.trim();
-     return div.firstChild; 
-   }
+     return div.firstChild;
+}
+
+function defaultAvatar(image){
+     let disc = new Number(image.src.split('/')[4]) % 5
+     if (isNaN(disc)) disc = 0
+     image.src = `https://cdn.discordapp.com/embed/avatars/${disc}.png`
+}
+
 
 /**
  * 
@@ -54,7 +61,7 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
           const cached = original.find(x => x.author_id === id) || usercache.find(x => x.id === id)
           if (cached) {
                trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${cached.author_nickname}</span>`)
-          }else {
+          } else {
                const body = await fetch('https://discord-number-bot.herokuapp.com/?id=' + id).then(x => x.json())
 
                body.author_nickame = body.name
@@ -88,7 +95,7 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
      msgContent.innerHTML = trueContent
      msgContent.className = 'messageContent'
 
-     const spans = [ document.createElement('span'), document.createElement('span') ]
+     const spans = [document.createElement('span'), document.createElement('span')]
      spans[0].className = "nick"
      spans[1].className = "timestamp"
      spans[0].innerHTML = author_nickname
@@ -104,6 +111,8 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
      const avatar = document.createElement('img')
      avatar.className = "avatar"
      avatar.src = `https://cdn.discordapp.com/avatars/${author_id}/${avatar_hash}.${avatar_hash.startsWith('a_') ? 'gif' : 'png'}`
+     avatar.draggable = false
+     avatar.setAttribute('onerror', 'defaultAvatar(this)')
 
      msg.append(avatar)
      msg.append(right)
@@ -113,7 +122,7 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
      return msg
 }
 
-async function load(data){
+async function load(data) {
      if (document.getElementsByClassName('message').length !== 0) for (let i = document.getElementsByClassName('message').length; i === 0; i--) {
           document.getElementsByClassName('message')[i].remove()
      }
@@ -134,14 +143,14 @@ const name = query.get('name')
  * 
  * @param {HTMLInputElement} input
  */
-async function fileUpload(input){
+async function fileUpload(input) {
      console.log(await input.files[0].text())
      document.getElementById('loader').style.visibility = 'visible'
      document.getElementById('input').remove()
      load(JSON.parse(await input.files[0].text()))
 };
 
-(async function() {
+(async function () {
      if (channel) {
           document.getElementById('loader').style.visibility = 'visible'
           const res = await fetch(`https://cors-anywhere.herokuapp.com/https://cdn.discordapp.com/attachments/${channel}/${attachment}/${name}`)
@@ -158,7 +167,7 @@ async function fileUpload(input){
      }
      else if (data.startsWith('http')) {
           throw new ReferenceError('Mehod not implemented.')
-     }else {
+     } else {
           load(JSON.parse(data))
      }
 })()

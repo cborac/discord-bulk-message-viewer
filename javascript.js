@@ -34,7 +34,7 @@ function defaultAvatar(image){
  * @param {*[]} original 
  */
 
-async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, author_nickname, content }, original, i) {
+async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'fff', timestamp = 0, author_nickname = 'none', content = 'none' }, original, i) {
 
      /**
       * @type {string}
@@ -49,7 +49,7 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
           /**
            * @param {Node} node
            */
-          html: (node, output) => node.content
+          html: node => node.content
      }
 
      const parser = SimpleMarkdown.parserFor(rules);

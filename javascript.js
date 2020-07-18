@@ -76,7 +76,7 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
 
      const out = SimpleMarkdown.defaultHtmlOutput(parser(trueContent), { inline: true })
 
-     trueContent = createElementFromHTML(out).innerHTML.split('&lt;img').join('<img').split('"&gt;').join('">')
+     trueContent = createElementFromHTML(out).innerHTML.split('&lt;img').join('<img').split('&gt;').join('>').split('&lt;span').join('<span')
 
      const msg = document.createElement('div')
      msg.className = "message"

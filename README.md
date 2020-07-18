@@ -9,7 +9,7 @@ or you can use discord attachments
 ```
 https://sardonyx.me/discord-bulk-message-viewer?channel=(channel id)&attachment=(attachment id)&name=(url encoded attachment name)
 ```
-[Example](https://sardonyx.me/discord-bulk-message-viewer?channel=716972875852283904&attachment=732679506858475600&name=bulkmsg.json)
+[Example](https://sardonyx.me/discord-bulk-message-viewer/?attachment=734057778070552686&channel=723679104875888753&name=example.json)
 
 
 #### Example JSON Structure

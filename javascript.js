@@ -32,7 +32,7 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
      /**
       * @type {string}
       */
-     let trueContent = content.split('\n').join('<br>')
+     let trueContent = content
 
      author_nickname = author_nickname.split('<').join('&lt;').split('>').join('&gt;')
      content = content.split('<').join('&lt;').split('>').join('&gt;')
@@ -76,7 +76,7 @@ async function createMessage({ author_id, avatar_hash, hexcolor, timestamp, auth
 
      const out = SimpleMarkdown.defaultHtmlOutput(parser(trueContent), { inline: true })
 
-     trueContent = createElementFromHTML(out).innerHTML.split('&lt;img').join('<img').split('&gt;').join('>').split('&lt;span').join('<span').split('&lt;/span').join('</span')
+     trueContent = createElementFromHTML(out).innerHTML.split('&lt;img').join('<img').split('&gt;').join('>').split('&lt;span').join('<span').split('&lt;/span').join('</span').split('\n').join('<br>')
 
      const msg = document.createElement('div')
      msg.className = "message"

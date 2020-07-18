@@ -1,3 +1,5 @@
+https://sardonyx.me/discord-bulk-message-viewer
+
 # Discord Bulk Message Viewer
 Just supply a JSON file within the url or supply it directly on the website.
 
@@ -9,7 +11,7 @@ or you can use discord attachments
 ```
 https://sardonyx.me/discord-bulk-message-viewer?channel=(channel id)&attachment=(attachment id)&name=(url encoded attachment name)
 ```
-[Example](https://sardonyx.me/discord-bulk-message-viewer/?attachment=734073787238318080&channel=723679104875888753&name=example.json)
+[Example](https://sardonyx.me/discord-bulk-message-viewer/?attachment=734077844170473592&channel=723679104875888753&name=example.json)
 
 
 #### Example JSON Structure

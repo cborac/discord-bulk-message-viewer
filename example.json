@@ -13,6 +13,14 @@
           "hexcolor": "B99CBA",
           "timestamp": 1594744316220,
           "author_nickname": "Sardonyx",
-          "content": "<script>alert('XSS no more')</script>"
+          "content": "<script>alert('XSS no more') also <@!130973321683533824> can I use you in my example <:uwu:586299815017578506>?</script>"
+     },
+     {
+          "author_id": "130973321683533824",
+          "avatar_hash": "a_930134c64191da4713c22eb120c939e",
+          "hexcolor": "F47FFF",
+          "timestamp": 1594744316220,
+          "author_nickname": "Moomin Lachee #AdaptiveCards",
+          "content": "Yeah that's fine 😀 where's <@!515615356052570132>"
      }
 ]

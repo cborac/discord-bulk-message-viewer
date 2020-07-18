@@ -5,7 +5,7 @@
           "hexcolor": "B99CBA",
           "timestamp": 1594744316220,
           "author_nickname": "Sardonyx",
-          "content": "Hello World!"
+          "content": "😃 **Hello World!** <a:peepoDance:679412806063489054>"
      },
      {
           "author_id": "295222772546928641",
@@ -13,6 +13,6 @@
           "hexcolor": "B99CBA",
           "timestamp": 1594744316220,
           "author_nickname": "Sardonyx",
-          "content": "I said hello?"
+          "content": "<script>alert('XSS no more')</script>"
      }
 ]

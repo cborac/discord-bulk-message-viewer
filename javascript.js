@@ -62,13 +62,7 @@ async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'f
           if (cached) {
                trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${cached.author_nickname}</span>`)
           } else {
-               const body = await fetch('https://discord-number-bot.herokuapp.com/?id=' + id).then(x => x.json())
-
-               body.author_nickame = body.name
-
-               usercache.push(body)
-
-               trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${body.name}</span>`)
+               trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${x.author_id}</span>`)
           }
      }
 

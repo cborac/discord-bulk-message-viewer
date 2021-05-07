@@ -63,7 +63,7 @@ async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'f
           if (cached) {
                trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${cached.author_nickname}</span>`)
           } else {
-               trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${x.author_id}</span>`)
+               trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${id}</span>`)
           }
      }
 

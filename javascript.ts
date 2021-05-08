@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Copyright 2021 Sardonyx
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,52 +13,38 @@
  * limitations under the License.
  */
 
-const usercache = []
-
-function createElementFromHTML(htmlString) {
+function createElementFromHTML(htmlString: string): HTMLElement {
      const div = document.createElement('div');
      div.innerHTML = htmlString.trim();
-     return div.firstChild;
+     return div.firstChild as HTMLElement
 }
 
-function defaultAvatar(image){
-     let disc = new Number(image.src.split('/')[4]) % 5
+function defaultAvatar(image: { src: string }) {
+     let disc = parseInt(image.src.split('/')[4]) % 5
      if (isNaN(disc)) disc = 0
      image.src = `https://cdn.discordapp.com/embed/avatars/${disc}.png`
 }
 
+const parser = SimpleMarkdown.parserFor({
+     ...SimpleMarkdown.defaultRules,
+     url: {
+          html: (node: any) => node.content
+     }
+});
 
-/**
- * 
- * @param {*} param0 
- * @param {*[]} original 
- */
+async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'fff', timestamp = 0, author_nickname = 'none', content = 'none' }, original: User[], i: number) {
 
-async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'fff', timestamp = 0, author_nickname = 'none', content = 'none' }, original, i) {
-
-     /**
-      * @type {string}
-      */
-     let trueContent = content
+     let trueContent: string = content
 
      author_nickname = author_nickname.split('<').join('&lt;').split('>').join('&gt;')
      content = content.split('<').join('&lt;').split('>').join('&gt;')
 
-     const rules = SimpleMarkdown.defaultRules;
-     rules.url = {
-          /**
-           * @param {Node} node
-           */
-          html: node => node.content
-     }
-
-     const parser = SimpleMarkdown.parserFor(rules);
-
-     const mentions = trueContent.match(/<@![0-9]+>/g)
+     const mentions: string[] = trueContent.match(/<@![0-9]+>/g)
 
      if (mentions) for (const mention of mentions) {
           const id = mention.substring(3, mention.length - 1)
-          const cached = original.find(x => x.author_id === id) || usercache.find(x => x.id === id)
+          const cached = original.find(x => x.author_id === id)
+
           if (cached) {
                trueContent = trueContent.replace(/<@![0-9]+>/g, `<span class="mention">@${cached.author_nickname}</span>`)
           } else {
@@ -78,7 +63,7 @@ async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'f
 
      const out = SimpleMarkdown.defaultHtmlOutput(parser(trueContent), { inline: true })
 
-     trueContent = createElementFromHTML(out).innerHTML.split('&lt;img').join('<img').split('&gt;').join('>').split('&lt;span').join('<span').split('&lt;/span').join('</span').split('\n').join('<br>')
+     trueContent = out.startsWith("<") ? createElementFromHTML(out).innerHTML.split('&lt;img').join('<img').split('&gt;').join('>').split('&lt;span').join('<span').split('&lt;/span').join('</span').split('\n').join('<br>') : out
 
      const msg = document.createElement('div')
      msg.className = "message"
@@ -97,8 +82,6 @@ async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'f
      spans[0].style.color = `#${hexcolor}`
      spans[1].innerHTML = moment(new Date(timestamp)).calendar()
 
-
-
      right.append(spans[0])
      right.append(spans[1])
      right.append(msgContent)
@@ -112,12 +95,12 @@ async function createMessage({ author_id = '0', avatar_hash = '0', hexcolor = 'f
      msg.append(avatar)
      msg.append(right)
 
-     if (i === 0) msg.style['margin-top'] = "0px"
+     if (i === 0) msg.style.marginTop = "0px"
 
      return msg
 }
 
-async function load(data) {
+async function load(data: User[]) {
      if (document.getElementsByClassName('message').length !== 0) for (let i = document.getElementsByClassName('message').length; i === 0; i--) {
           document.getElementsByClassName('message')[i].remove()
      }
@@ -132,13 +115,9 @@ const query = new URLSearchParams(location.search)
 const data = query.get('data')
 const channel = query.get('channel')
 const attachment = query.get('attachment')
-const name = query.get('name')
+const fileName = query.get('name')
 
-/**
- * 
- * @param {HTMLInputElement} input
- */
-async function fileUpload(input) {
+async function fileUpload(input: HTMLInputElement) {
      console.log(await input.files[0].text())
      document.getElementById('loader').style.visibility = 'visible'
      document.getElementById('input').remove()
@@ -148,9 +127,8 @@ async function fileUpload(input) {
 (async function () {
      if (channel) {
           document.getElementById('loader').style.visibility = 'visible'
-          const res = await fetch(`https://cors-anywhere.herokuapp.com/https://cdn.discordapp.com/attachments/${channel}/${attachment}/${name}`)
-          const body = await res.text()
-          load(JSON.parse(body))
+          const res = await fetch(`https://php.sardonyx.me/cors.php?path=${channel}/${attachment}/${fileName}`)
+          load(await res.json())
      }
      else if (data === null) {
           const input = document.createElement('input')
@@ -166,3 +144,6 @@ async function fileUpload(input) {
           load(JSON.parse(data))
      }
 })()
+
+
+type User = { author_id: string, avatar_hash: string, hexcolor: string, timestamp: number, author_nickname: string, content: string }

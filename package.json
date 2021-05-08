@@ -1,0 +1,24 @@
+{
+  "name": "discord-bulk-message-viewer",
+  "description": "https://sardonyx.me/discord-bulk-message-viewer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sardonyx78/discord-bulk-message-viewer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sardonyx78/discord-bulk-message-viewer/issues"
+  },
+  "homepage": "https://github.com/Sardonyx78/discord-bulk-message-viewer#readme",
+  "devDependencies": {
+    "@types/twemoji": "^12.1.1",
+    "moment": "^2.29.1",
+    "simple-markdown": "^0.7.3"
+  }
+}
